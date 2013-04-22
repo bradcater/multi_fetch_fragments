@@ -82,7 +82,9 @@ module MultiFetchFragments
 
   class Railtie < Rails::Railtie
     initializer "multi_fetch_fragments.initialize" do |app|
-      ActionView::PartialRenderer.class_eval do
+      # Fix for Rails 3.0.20.
+      #ActionView::PartialRenderer.class_eval do
+      ActionView::Partials::PartialRenderer.class_eval do
         include MultiFetchFragments
       end
     end
